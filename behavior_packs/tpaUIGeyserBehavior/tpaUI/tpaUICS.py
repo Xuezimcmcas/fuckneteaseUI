@@ -38,8 +38,8 @@ class tpaUICS(ClientSystem):
         clientApi.RegisterUI('tpaUI', 'tpaplayerUI', 'tpaUI.uiScript.tpaplayerUISN.tpaplayerUISN', 'tpaplayerUI.main')
 
         # 这一串代码是测试用的 ui初始化完毕后直接createui创建ui给玩家看       isHud是1代表ui打开的同时可以移动，0则相反
-        self.ui_list['tpaUI'] = clientApi.CreateUI('tpaUI', 'tpaUI', {'isHud': 1})
-        self.ui_list['tpaplayerUI'] = clientApi.CreateUI('tpaUI', 'tpaplayerUI', {'isHud': 1})
+        self.ui_list['tpaUI'] = clientApi.CreateUI('tpaUI', 'tpaUI', {'isHud': 0})
+        self.ui_list['tpaplayerUI'] = clientApi.CreateUI('tpaUI', 'tpaplayerUI', {'isHud': 0})
         # 隐藏ui画布
         self.ui_list['tpaUI'].SetScreenVisible(False)
         self.ui_list['tpaplayerUI'].setScreenVisible(False)
