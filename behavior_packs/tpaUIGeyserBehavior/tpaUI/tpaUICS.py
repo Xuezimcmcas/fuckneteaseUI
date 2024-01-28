@@ -25,10 +25,11 @@ class tpaUICS(ClientSystem):
     def ListenForCustomEvents(self):
 
         # namespace
-        events = {'tpaUI': [
-            # system_name event_name   class(就是你callback这个方法 在哪个类实例，你得给)     callback
-            ['tpaUISS', 'OpenTpaUI', self, self.OpenTpaUI],
-        ]
+        events = {'tpaUI':
+            [
+                # system_name event_name   class(就是你callback这个方法 在哪个类实例，你得给)     callback
+                ['tpaUISS', 'OpenTpaUI', self, self.OpenTpaUI],
+            ]
         }
         for namespace, info in events.items():
             for system_name, event_name, cls, callback in info:
