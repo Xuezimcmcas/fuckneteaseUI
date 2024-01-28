@@ -14,6 +14,21 @@ class tpaUISN(ScreenNode):
 
         self.controls = {}
 
+        self.ListenForCustomEvents()
+
+    def ListenForCustomEvents(self):
+
+        # namespace
+        events = {'tpaUI': [
+            # system_name event_name   class(就是你callback这个方法 在哪个类实例，你得给)     callback
+            ['tpaUISS', 'UpdatePlayerList', self, self.UpdatePlayerList]
+        ]
+        }
+        for namespace, info in events.items():
+            for system_name, event_name, cls, callback in info:
+                self.client_system.ListenForEvent(namespace, system_name, event_name, cls,
+                                                  callback)
+
     def Create(self):
         """
         @description UI创建成功时调用
@@ -53,9 +68,7 @@ class tpaUISN(ScreenNode):
             self.controls['selections'].AddOption(playerName, None, {"playerName": playerName})
 
     def onOpenComboBoxCallback(self):
-        name = self.controls['edit_box'].GetEditText()
         self.client_system.NotifyToServer('RequestPlayerList', {})
-
 
     def onCloseComboBoxCallback(self):
         # 移除所有选项

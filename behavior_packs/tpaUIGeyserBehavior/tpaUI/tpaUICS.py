@@ -4,6 +4,7 @@ import mod.client.extraClientApi as clientApi
 
 ClientSystem = clientApi.GetClientSystemCls()
 
+
 class tpaUICS(ClientSystem):
     def __init__(self, namespace, systemName):
         ClientSystem.__init__(self, namespace, systemName)
@@ -22,14 +23,17 @@ class tpaUICS(ClientSystem):
                                 events[eventName])
 
     def ListenForCustomEvents(self):
-        events = {
-            'tpaUI': ['tpaUISS', 'OpenTpaUI', self.OpenTpaUI],
-            'tpaUI': ['tpaUISS', 'UpdatePlayerList', self.UpdatePlayerList]
-        }
 
-        for namespace in events:
-            self.ListenForEvent(namespace, events[namespace][0], events[namespace][1], self,
-                                events[namespace][2])
+        # namespace
+        events = {'tpaUI': [
+            # system_name event_name   class(就是你callback这个方法 在哪个类实例，你得给)     callback
+            ['tpaUISS', 'OpenTpaUI', self, self.OpenTpaUI],
+        ]
+        }
+        for namespace, info in events.items():
+            for system_name, event_name, cls, callback in info:
+                self.ListenForEvent(namespace, system_name, event_name, cls,
+                                    callback)
 
     # UI初始化事件
     def UiInitFinished(self, data):
@@ -44,9 +48,8 @@ class tpaUICS(ClientSystem):
     # 服务端通知你打开tpaUI事件
     def OpenTpaUI(self, data):
         # 显示ui画布
+        print 11
         self.ui_list['tpaUI'].SetScreenVisible(True)
-
-
 
     # 监听引擎OnScriptTickClient事件，引擎会执行该tick回调，1秒钟30帧
     def OnTickClient(self):
