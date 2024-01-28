@@ -36,6 +36,9 @@ class tpaUISN(ScreenNode):
         # 你这个什么b路径 我劝你后续自己改
         self.controls['edit_box'] = self.GetBaseUIControl('/panel/image/edit_box').asTextEditBox()
         tpa_button = self.GetBaseUIControl('/panel/image/button').asButton()
+        tpa_button.AddTouchEventParams({"isSwallow": True})
+        tpa_button.SetButtonTouchUpCallback(self.onTpaButtonClicked)
+
         self.controls['selections'] = self.GetBaseUIControl(
             '/panel/image/selections/selections').asNeteaseComboBox()
 

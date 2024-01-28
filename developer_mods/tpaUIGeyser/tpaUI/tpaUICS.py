@@ -23,13 +23,18 @@ class tpaUICS(ClientSystem):
                                 events[eventName])
 
     def ListenForCustomEvents(self):
-        events = {
-            'tpaUI': ['tpaUISS', 'OpenTpaUI', self.OpenTpaUI]
-        }
 
-        for namespace in events:
-            self.ListenForEvent(namespace, events[namespace][0], events[namespace][1], self,
-                                events[namespace][2])
+        # namespace
+        events = {'tpaUI':
+            [
+                # system_name event_name   class(就是你callback这个方法 在哪个类实例，你得给)     callback
+                ['tpaUISS', 'OpenTpaUI', self, self.OpenTpaUI],
+            ]
+        }
+        for namespace, info in events.items():
+            for system_name, event_name, cls, callback in info:
+                self.ListenForEvent(namespace, system_name, event_name, cls,
+                                    callback)
 
     # UI初始化事件
     def UiInitFinished(self, data):

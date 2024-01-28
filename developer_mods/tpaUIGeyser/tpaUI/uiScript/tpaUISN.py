@@ -14,17 +14,37 @@ class tpaUISN(ScreenNode):
 
         self.controls = {}
 
+        self.ListenForCustomEvents()
+
+    def ListenForCustomEvents(self):
+
+        # namespace
+        events = {'tpaUI': [
+            # system_name event_name   class(就是你callback这个方法 在哪个类实例，你得给)     callback
+            ['tpaUISS', 'UpdatePlayerList', self, self.UpdatePlayerList]
+        ]
+        }
+        for namespace, info in events.items():
+            for system_name, event_name, cls, callback in info:
+                self.client_system.ListenForEvent(namespace, system_name, event_name, cls,
+                                                  callback)
+
     def Create(self):
         """
         @description UI创建成功时调用
         """
         # 你这个什么b路径 我劝你后续自己改
         self.controls['edit_box'] = self.GetBaseUIControl('/panel/image/edit_box').asTextEditBox()
+        tpa_button = self.GetBaseUIControl('/panel/image/button').asButton()
+        tpa_button.AddTouchEventParams({"isSwallow": True})
+        tpa_button.SetButtonTouchUpCallback(self.onTpaButtonClicked)
+
         self.controls['selections'] = self.GetBaseUIControl(
             '/panel/image/selections/selections').asNeteaseComboBox()
 
         # 注册打开快捷选择栏列表时的事件（每次打开都会检测editbox里已经输入的内容 检测当前所有玩家里有没有含有内容的玩家名字
         self.controls['selections'].RegisterOpenComboBoxCallback(self.onOpenComboBoxCallback)
+        tpa_button.SetButtonTouchUpCallback(self.onTpaButtonClicked)
 
         # 注册关闭快捷选择栏列表时的事件（每次关闭都会清空选项
         self.controls['selections'].RegisterCloseComboBoxCallback(self.onCloseComboBoxCallback)
@@ -40,17 +60,18 @@ class tpaUISN(ScreenNode):
         self.onCloseComboBoxCallback()
         pass
 
+    def onTpaButtonClicked(self, data):
+        playerName = self.controls['edit_box'].GetEditText()
+        self.client_system.NotifyToServer('PlayerTpaRequest', {'playerName': playerName})
+
+    def UpdatePlayerList(self, data):
+        playerList = data.get("playerList", [])
+        self.controls['selections'].ClearOptions()
+        for playerName in playerList:
+            self.controls['selections'].AddOption(playerName, None, {"playerName": playerName})
+
     def onOpenComboBoxCallback(self):
-        name = self.controls['edit_box'].GetEditText()
-        '''
-        这里模拟一个玩家列表，具体需要你服务端传给客户端，也可以在这里打开的回调函数 发送申请，然后服务端收到 返回给你客户端，然后在返回接到的事件里再创建选项
-        （不过没什么必要啊，每次玩家打开这个ui的时候请求一次就行了（不过你不是pushscreen create只有在初始化 createui的时候执行一次，所以看你自己咯）
-        '''
-        players = ['亦染', '雪紫', '野兽先辈', '李田所', '我修院']
-        for playerName in players:
-            if name in playerName:  # 不知道这个AddOption用法 就去文档找
-                success = self.controls['selections'].AddOption(playerName, None,
-                                                                {"playerName": playerName})
+        self.client_system.NotifyToServer('RequestPlayerList', {})
 
     def onCloseComboBoxCallback(self):
         # 移除所有选项

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import mod.server.extraServerApi as serverApi
+
 ServerSystem = serverApi.GetServerSystemCls()
 
 
@@ -8,6 +9,7 @@ class tpaUISS(ServerSystem):
     def __init__(self, namespace, systemName):
         ServerSystem.__init__(self, namespace, systemName)
         self.ListenForOriginEvents()
+        self.ListenForCustomEvents()
 
     def ListenForOriginEvents(self):
         events = {
@@ -17,6 +19,22 @@ class tpaUISS(ServerSystem):
         for eventName in events:
             self.ListenForEvent(serverApi.GetEngineNamespace(), serverApi.GetEngineSystemName(), eventName, self,
                                 events[eventName])
+
+    def ListenForCustomEvents(self):
+        events = [
+            {'tpaUI': ['tpaUICS', 'RequestPlayerList', self.RequestPlayerList]},
+        ]
+        for event_dict in events:
+            for namespace, info in event_dict.items():
+                self.ListenForEvent(namespace, info[0], info[1], self,
+                                    info[2])
+
+    def RequestPlayerList(self, data):
+        playerList = []
+        for playerId in serverApi.GetPlayerList():
+            playerList.append(serverApi.GetEngineCompFactory().CreateName(playerId).GetName())
+
+        self.NotifyToClient(data['__id__'], 'UpdatePlayerList', {'playerList': playerList})
 
     def ServerChatEvent(self, data):
         message = data['message']
