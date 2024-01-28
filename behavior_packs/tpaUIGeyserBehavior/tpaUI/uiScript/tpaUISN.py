@@ -35,13 +35,13 @@ class tpaUISN(ScreenNode):
         """
         # 你这个什么b路径 我劝你后续自己改
         self.controls['edit_box'] = self.GetBaseUIControl('/panel/image/edit_box').asTextEditBox()
-        self.controls['tpa_button'] = self.GetBaseUIControl('/panel/image/button').asButton()
+        tpa_button = self.GetBaseUIControl('/panel/image/button').asButton()
         self.controls['selections'] = self.GetBaseUIControl(
             '/panel/image/selections/selections').asNeteaseComboBox()
 
         # 注册打开快捷选择栏列表时的事件（每次打开都会检测editbox里已经输入的内容 检测当前所有玩家里有没有含有内容的玩家名字
         self.controls['selections'].RegisterOpenComboBoxCallback(self.onOpenComboBoxCallback)
-        self.controls['tpa_button'].SetButtonTouchUpCallback(self.onTpaButtonClicked)
+        tpa_button.SetButtonTouchUpCallback(self.onTpaButtonClicked)
 
         # 注册关闭快捷选择栏列表时的事件（每次关闭都会清空选项
         self.controls['selections'].RegisterCloseComboBoxCallback(self.onCloseComboBoxCallback)
