@@ -49,7 +49,6 @@ class tpaUICS(ClientSystem):
     # 服务端通知你打开tpaUI事件
     def OpenTpaUI(self, data):
         # 显示ui画布
-        print 11
         self.ui_list['tpaUI'].SetScreenVisible(True)
 
     # 监听引擎OnScriptTickClient事件，引擎会执行该tick回调，1秒钟30帧
