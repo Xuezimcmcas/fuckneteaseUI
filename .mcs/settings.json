@@ -1,0 +1,13 @@
+{
+    "Arena.Component.Namespace": "eipej",
+    "FirstTabSetting": 0,
+    "ShortItemSettings": [
+        "resource_packs\\tpaUIGeyserResource\\ui",
+        "behavior_packs\\tpaUIGeyserBehavior\\Presets",
+        "behavior_packs\\tpaUIGeyserBehavior\\Parts",
+        "behavior_packs\\tpaUIGeyserBehavior\\BoxData",
+        "resource_packs\\tpaUIGeyserResource\\effects",
+        "resource_packs\\tpaUIGeyserResource\\models",
+        "resource_packs\\tpaUIGeyserResource\\textures"
+    ]
+}
