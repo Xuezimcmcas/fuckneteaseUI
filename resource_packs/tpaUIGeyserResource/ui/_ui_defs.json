@@ -1,7 +1,0 @@
-{
-    "ui_defs": [
-        "ui/tpaplayerUI.json",
-        "ui/tpaUI.json",
-        "ui/netease_editor_template_namespace.json"
-    ]
-}

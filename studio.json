@@ -1,53 +1,45 @@
 {
-    "Account": "1244894362@qq.com",
-    "AssertCacheDir": "E:\\MCStudioDownload\\EngineAssert",
-    "BlockNums": [
-        0,
-        0
-    ],
-    "BornPoint": [
-        0,
-        0,
-        0
-    ],
-    "CanPublishResourceComponent": true,
-    "CodeEnable": false,
-    "CreateNew": true,
-    "CreateVersion": "2.10.0.561375",
-    "DCWebUrl": "https://x19apigatewayexpr.nie.netease.com",
-    "EditAddOnPaths": [
-
-    ],
-    "EditLogFilePath": "E:\\MCStudioDownload\\work\\editor\\edit.log",
-    "EditMaterialPaths": [
-
-    ],
-    "EditName": "tpaUI",
-    "EditType": 2,
-    "EditVersion": "2.10.0.561375",
-    "EditorResourcePackPath": "C:\\Program Files (x86)\\Netease\\MCStudio\\data\\inner_res",
-    "ElkUrl": "https://x19mclexpr.nie.netease.com/client-log",
-    "GameType": 0,
-    "Id": "15bab49e3e634bb18898444500ae09a4",
-    "IsMap": false,
-    "NewEditCount": 1,
-    "OldComponents": [
-
-    ],
-    "OldEditCount": 0,
-    "ResourceIds": [
-
-    ],
-    "SaveBackAddOnPath": "E:\\MCStudioDownload\\work\\1244894362@qq.com\\Cpp\\AddOn\\tpaUI",
-    "SaveBackMapPath": null,
-    "Seed": "",
-    "ServerName": "EXPR",
-    "ShowGpuDriverTips": false,
-    "ShowGuide": false,
-    "Source": "import",
-    "StudioPort": 9571,
-    "StudioTempPath": "E:\\MCStudioDownload\\temp\\editorTemp",
-    "UserId": "42121",
-    "UserName": "我是亦染",
-    "WorldType": 1
+  "Source": "import",
+  "CreateVersion": "2.10.0.561375",
+  "EditVersion": "2.10.0.561375",
+  "OldEditCount": 0,
+  "NewEditCount": 1,
+  "OldComponents": [],
+  "Account": "",
+  "UserName": "",
+  "UserId": "",
+  "Id": "15bab49e3e634bb18898444500ae09a4",
+  "EditType": 2,
+  "IsMap": false,
+  "CreateNew": true,
+  "CodeEnable": false,
+  "CanPublishResourceComponent": true,
+  "EditName": "tpaUI",
+  "GameType": 0,
+  "WorldType": 1,
+  "Seed": "",
+  "BlockNums": [
+    0,
+    0
+  ],
+  "BornPoint": [
+    0,
+    0,
+    0
+  ],
+  "SaveBackMapPath": "",
+  "SaveBackAddOnPath": "",
+  "ResourceIds": [],
+  "EditAddOnPaths": [],
+  "EditMaterialPaths": [],
+  "EditLogFilePath": "",
+  "ServerName": "EXPR",
+  "StudioPort": 9571,
+  "DCWebUrl": "https://x19apigatewayexpr.nie.netease.com",
+  "ShowGuide": false,
+  "AssertCacheDir": "",
+  "ElkUrl": "",
+  "ShowGpuDriverTips": false,
+  "StudioTempPath": "",
+  "EditorResourcePackPath": ""
 }
