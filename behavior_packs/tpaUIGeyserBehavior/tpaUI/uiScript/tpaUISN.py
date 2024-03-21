@@ -89,7 +89,7 @@ class tpaUISN(ScreenNode):
         pass
 
     def onCloseButtonClicked(self, data):
-        self.SetScreenVisible(False)
+        clientApi.PopScreen()
         print("关闭按钮执行")
 
     def Destroy(self):

@@ -41,15 +41,10 @@ class tpaUICS(ClientSystem):
         # 注册tpaUI           mod名字    UI短名  UI的脚本文件类路径                   画布路径(ui的json文件名字.画布名字)你的画布被我改名为tpaUI了
         clientApi.RegisterUI('tpaUI', 'tpaUI', 'tpaUI.uiScript.tpaUISN.tpaUISN', 'tpaUI.tpaUI')
 
-        # 这一串代码是测试用的 ui初始化完毕后直接createui创建ui给玩家看       isHud是1代表ui打开的同时可以移动，0则相反
-        self.ui_list['tpaUI'] = clientApi.CreateUI('tpaUI', 'tpaUI', {'isHud': 1})
-        # 隐藏ui画布
-        self.ui_list['tpaUI'].SetScreenVisible(False)
-
     # 服务端通知你打开tpaUI事件
     def OpenTpaUI(self, data):
         # 显示ui画布
-        self.ui_list['tpaUI'].SetScreenVisible(True)
+        clientApi.PushScreen('tpaUI', 'tpaUI')
 
     # 监听引擎OnScriptTickClient事件，引擎会执行该tick回调，1秒钟30帧
     def OnTickClient(self):
