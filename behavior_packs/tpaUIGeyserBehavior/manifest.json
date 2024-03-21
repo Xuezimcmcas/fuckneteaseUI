@@ -1,28 +1,26 @@
 {
-    "dependencies": [
-
-    ],
-    "format_version": 1,
-    "header": {
-        "description": "",
-        "name": "behavior_pack",
-        "uuid": "4a78e941-6f5f-471b-b310-cbc6903ba701",
-        "version": [
-            0,
-            0,
-            1
-        ]
-    },
-    "modules": [
-        {
-            "description": "",
-            "type": "data",
-            "uuid": "48a52a06-0fd9-4d91-8dea-81975da1b625",
-            "version": [
-                0,
-                0,
-                1
-            ]
-        }
+  "modules": [
+    {
+      "description": "",
+      "type": "data",
+      "uuid": "41713965-8e83-44fb-8445-5896fe6c039e",
+      "version": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "header": {
+    "description": "",
+    "name": "behavior_pack",
+    "uuid": "f1dc5f7a-d5a2-4e07-92d4-73acbb2612a2",
+    "version": [
+      0,
+      0,
+      4
     ]
+  },
+  "dependencies": [],
+  "format_version": 1
 }

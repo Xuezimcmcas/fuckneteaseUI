@@ -35,16 +35,20 @@ class tpaUISN(ScreenNode):
         """
         # 你这个什么b路径 我劝你后续自己改
         self.controls['edit_box'] = self.GetBaseUIControl('/panel/image/edit_box').asTextEditBox()
+
         tpa_button = self.GetBaseUIControl('/panel/image/button').asButton()
         tpa_button.AddTouchEventParams({"isSwallow": True})
         tpa_button.SetButtonTouchUpCallback(self.onTpaButtonClicked)
+
+        close_button = self.GetBaseUIControl('/panel/image/button(1)').asButton()
+        close_button.AddTouchEventParams({"isSwallow": True})
+        close_button.SetButtonTouchUpCallback(self.onCloseButtonClicked)
 
         self.controls['selections'] = self.GetBaseUIControl(
             '/panel/image/selections/selections').asNeteaseComboBox()
 
         # 注册打开快捷选择栏列表时的事件（每次打开都会检测editbox里已经输入的内容 检测当前所有玩家里有没有含有内容的玩家名字
         self.controls['selections'].RegisterOpenComboBoxCallback(self.onOpenComboBoxCallback)
-        tpa_button.SetButtonTouchUpCallback(self.onTpaButtonClicked)
 
         # 注册关闭快捷选择栏列表时的事件（每次关闭都会清空选项
         self.controls['selections'].RegisterCloseComboBoxCallback(self.onCloseComboBoxCallback)
@@ -83,6 +87,10 @@ class tpaUISN(ScreenNode):
             else:
                 break
         pass
+
+    def onCloseButtonClicked(self, data):
+        self.SetScreenVisible(False)
+        print("关闭按钮执行")
 
     def Destroy(self):
         """
